@@ -94,6 +94,7 @@ width: 100%;
   font-weight: 600;
 
 }
+
 .products-container{
   display: flex;
   flex-wrap: wrap;
@@ -131,11 +132,18 @@ width: 100%;
 .hero-banner-container{
   background-color: #dcdcdc;
   border-radius: 15px;
-  position: relative;
+  /* position: relative; */
   height: 350px;
   line-height: 0.9; 
   width: 100%;
   overflow: hidden;
+
+}
+.banner-img{
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }
 /* .hero-banner-container:hover{
   
@@ -624,8 +632,9 @@ margin-top: 160px;
 
 @media screen and (max-width:992px) {
   .hero-banner-container{
-    /* padding: 250px 40px; */
-    height: 350px;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
   }
   .hero-banner-image{
     position: relative;

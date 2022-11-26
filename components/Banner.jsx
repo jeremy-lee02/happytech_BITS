@@ -10,8 +10,8 @@ const Banner = () => {
     <div className='container'>
       <Carousel variant='dark'>
         <Carousel.Item>
-          <div className='hero-banner-container text-center pointer'>
-            <Image src={image} objectFit='responsive' width={230} height={230} />
+          <div className='hero-banner-container'>
+            <Image src={img} layout='fill' className={'banner-img'} />
           </div>  
           <Carousel.Caption>
             <h3 className='text-white'>First slide label</h3>
@@ -20,7 +20,7 @@ const Banner = () => {
         </Carousel.Item>
 
         {/* Test */}
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <div className='hero-banner-container text-center pointer'>
             <Image src={image} objectFit='responsive' width={230} height={230} />
           </div>  
@@ -37,8 +37,8 @@ const Banner = () => {
             <h3 className='text-white'>Third slide label</h3>
             <p className='text-white'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
-        </Carousel.Item>
-        
+        </Carousel.Item> */}
+
       </Carousel>
     </div>
   )
