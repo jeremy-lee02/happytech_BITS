@@ -5,7 +5,7 @@ import { urlFor } from '../lib/client';
 
 const Banner = ({banners}) => {
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <Carousel>
         {banners.map(item => (
           <Carousel.Item>
