@@ -14,31 +14,9 @@ const Banner = () => {
             <Image src={img} layout='fill' className={'banner-img'} />
           </div>  
           <Carousel.Caption>
-            <h3 className='text-white'>First slide label</h3>
-            <p className='text-white'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <button type='button' className='btn1 btn btn-primary rounded'>Shop Now!</button>
           </Carousel.Caption>
         </Carousel.Item>
-
-        {/* Test */}
-        {/* <Carousel.Item>
-          <div className='hero-banner-container text-center pointer'>
-            <Image src={image} objectFit='responsive' width={230} height={230} />
-          </div>  
-          <Carousel.Caption>
-            <h3 className='text-white'>Second slide label</h3>
-            <p className='text-white'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className='hero-banner-container text-center pointer'>
-            <Image src={image} objectFit='responsive' width={230} height={230} />
-          </div>  
-          <Carousel.Caption>
-            <h3 className='text-white'>Third slide label</h3>
-            <p className='text-white'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item> */}
-
       </Carousel>
     </div>
   )
