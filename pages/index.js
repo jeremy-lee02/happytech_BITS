@@ -19,8 +19,10 @@ export default function Home({banners, bestProducts}) {
 }
 
 export const getServerSideProps = async () =>{
-  const query = '*[_type == "bestProduct"]'
+  const query = '*[_type == "products"]'
   const bestProducts = await client.fetch(query)
+
+  console.log(bestProducts)
 
   const queryBanner = '*[_type == "banner"]'
   const banners = await client.fetch(queryBanner)

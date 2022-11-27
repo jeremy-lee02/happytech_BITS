@@ -1,14 +1,15 @@
 export default {
-    name: 'bestProduct',
-    tittle: 'Best Selling Product',
+    name: 'products',
+    tittle: 'Products',
     type: 'document',
     fields: [
         {
             name: 'image',
             tittle: 'Image',
-            type: 'image',
+            type: 'array',
+            of: [{type:'image'}],
             options: {
-                hotspot: true,
+                hotspot: true
             }
         },
         {
@@ -31,9 +32,25 @@ export default {
             type: 'number'
         },
         {
+            name: 'color',
+            tittle: 'Color',
+            type: 'array',
+            of: [{type:'string'}]
+        },
+        {
             name: 'details',
             tittle: 'Details',
             type: 'string'
+        },
+        {
+            name: 'type',
+            tittle: 'Type',
+            type: 'string'
+        },
+        {
+            name: 'sales',
+            tittle: 'Sale',
+            type: 'number'
         },
     ]
 }

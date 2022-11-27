@@ -12,9 +12,6 @@ const Banner = ({banners}) => {
             <div className='hero-banner-container'>
               <img src={urlFor(item.image)} className={'banner-img'} />
             </div>  
-            <Carousel.Caption>
-              <button type='button' className='btn1 btn btn-primary rounded'>{item.buttonText}</button>
-            </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>

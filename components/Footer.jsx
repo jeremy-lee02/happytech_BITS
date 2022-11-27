@@ -16,7 +16,7 @@ const Footer = () => {
       <Link href={'https://www.facebook.com/profile.php?id=100006438044375'}>
         <AiOutlineTwitter />
       </Link>
-      <Link href={'https://www.facebook.com/profile.php?id=100006438044375'}>
+      <Link href={'/mouse'}>
         <AiFillYoutube />
       </Link>
       </p>
