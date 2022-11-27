@@ -5,6 +5,6 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['cdn.discordapp.com']
+    domains: ['cdn.discordapp.com' , 'https://cdn.sanity.io']
   }
 }

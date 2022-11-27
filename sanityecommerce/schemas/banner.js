@@ -16,11 +16,11 @@ export default {
             tittle: 'ButtonText',
             type: 'string'
         },
-        // {
-        //     name: 'product',
-        //     tittle: 'Product',
-        //     type: 'string'
-        // },
+        {
+            name: 'product',
+            tittle: 'Product',
+            type: 'string'
+        },
         // {
         //     name: 'desc',
         //     tittle: 'Description',

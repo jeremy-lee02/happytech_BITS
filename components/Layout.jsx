@@ -1,8 +1,23 @@
 import React from 'react'
-
-const Layout = () => {
+import Head from 'next/head'
+import {NavBar, Footer} from './index'
+const Layout = ({children}) => {
   return (
-    <div>Layout</div>
+    <div className='layout'>
+      <Head>
+        <title>HappyTech Store</title>
+        <link rel="shortcut icon" sizes='300x300' href="/logo1.png" />
+      </Head>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        {children}
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   )
 }
 

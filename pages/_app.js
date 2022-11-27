@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css'
+import {Layout} from '../components/index'
 
 
 
@@ -11,7 +12,11 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 
 export default MyApp
