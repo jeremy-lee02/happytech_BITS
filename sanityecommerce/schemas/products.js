@@ -52,5 +52,10 @@ export default {
             tittle: 'Sale',
             type: 'number'
         },
+        {
+            name: 'available',
+            tittle: 'Available',
+            type: 'boolean'
+        },
     ]
 }

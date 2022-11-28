@@ -3,8 +3,14 @@ import { client, urlFor } from '../../lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineStar, AiFillStar,} from 'react-icons/ai'
 import { BestProducts } from '../../components'
 
-const ProductDetails = ({product, products}) => {
-  const {image, name, details, price, color} = product
+const ProductDetails = ({product, products, recProducts}) => {
+  const {image, name, details, price, color, available} = product
+
+  const check = (value) =>{
+    if(value) return "Available"
+    return "Out of stock"
+  }
+
   return (
     <div className='home'>
         <div className='product-detail-container'>
@@ -34,6 +40,7 @@ const ProductDetails = ({product, products}) => {
                   </select>
                 </div>
                 <p className='price'>${price}</p>
+                <h3 className='available'>{check(available)}</h3>
                 <div className='quantity'>
                     <h3>Quantity:</h3>
                     <p className='quantity-desc'>
@@ -49,8 +56,8 @@ const ProductDetails = ({product, products}) => {
                     </p>
                 </div>
                 <div className='buttons'>
-                    <button type='button' className='add-to-cart' onClick= ''>Add To Cart</button>
-                    <button type='button' className='buy-now' onClick= ''>Buy Now</button>
+                    <button type='button' className='add-to-cart' onClick= '' disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
+                    <button type='button' className='buy-now' onClick= '' disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
                 </div>
             </div>
         </div>
@@ -58,7 +65,7 @@ const ProductDetails = ({product, products}) => {
             <h2>You May Also Like</h2>   
             <div className='marquee'>
                 <div className='maylike-products-container track'>
-                    {products.map((item)=>(
+                    {recProducts.map((item)=>(
                         <BestProducts key={item._id} products={item} />
                     ))}
                 </div>    
@@ -87,15 +94,20 @@ export const getStaticPaths = async () =>{
 }
 
 export const getStaticProps = async ({params: { slug }}) => {
+  const recProducts = []  
   const query = `*[_type == "products" && slug.current == '${slug}'][0]`;
   const productsQuery = '*[_type == "products"]'
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
-  console.log(product)
-  // console.log(products)
+  products.forEach(element => {
+    if (product.type === element.type && product.name !== element.name) {
+        recProducts.push(element);
+    }
+  });
+
   return {
-    props: {products, product}
+    props: {products, product, recProducts}
   }
 }
 
