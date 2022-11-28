@@ -14,6 +14,7 @@ const NavItems = () => {
           </button>
         </div>
         <div className='d-block p-4'>
+          <p>Hello</p>
           <p>Home</p>
           <p>Mouse</p>
           <p>Keyboard</p>
