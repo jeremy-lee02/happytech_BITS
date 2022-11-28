@@ -17,10 +17,9 @@ const NavItems = () => {
           <p>Home</p>
           <p>Mouse</p>
           <p>Keyboard</p>
-          <p>Headphone</p>
+          <p>Headphone  </p>
         </div>
       </div>
-      
     </div>
   )
 }

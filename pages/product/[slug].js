@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { client, urlFor } from '../../lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineStar, AiFillStar,} from 'react-icons/ai'
 import { BestProducts } from '../../components'
@@ -6,6 +6,7 @@ import { BestProducts } from '../../components'
 const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available} = product
 
+  const [index, setIndex] = useState(0)
   const check = (value) =>{
     if(value) return "Available"
     return "Out of stock"
@@ -16,16 +17,16 @@ const ProductDetails = ({product, products, recProducts}) => {
         <div className='product-detail-container'>
             <div>
                 <div className=''>
-                    <img src= {urlFor(image && image[0])} className= 'product-detail-image' />
+                    <img src= {urlFor(image && image[index])} className= 'product-detail-image' />
                 </div>
-                {/* <div className='small-images-container'>
+                <div className='small-images-container'>
                     {image?.map((item,i)=>(
                         <img src= {urlFor(item)} 
                         className= {i === index? 'small-image selected-image': 'small-image'} 
                         onMouseEnter= {()=>setIndex(i)}
                         key = {i} />
                     ))}
-                </div> */}
+                </div>
             </div>
             <div className='product-detail-desc'>
                 <h1>{name}</h1>
