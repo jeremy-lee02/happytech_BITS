@@ -6,9 +6,8 @@ import { StateContext } from '../context/StateContext';
 import {Toaster} from 'react-hot-toast'
 
 
-
-
 function MyApp({ Component, pageProps }) {
+
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap");
   }, [])

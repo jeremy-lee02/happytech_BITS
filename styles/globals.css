@@ -437,7 +437,7 @@ padding: 20px 10px;
 
 }
 .item-desc .bottom{
-  margin-top: 60px;
+  margin-top: 20px;
 }
 .flex h5{
   font-size: 24px;
@@ -454,11 +454,12 @@ padding: 20px 10px;
 
 }
 .remove-item{
-  font-size: 24px;
+  font-size: 28px;
   color: #f02d34;
   cursor: pointer;
   background: transparent;
   border: none;
+  padding-bottom: 10px;
 }
 .cart-bottom{
   position: absolute;

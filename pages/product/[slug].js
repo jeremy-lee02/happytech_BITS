@@ -2,9 +2,23 @@ import React, {useState} from 'react'
 import { client, urlFor } from '../../lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineStar, AiFillStar,} from 'react-icons/ai'
 import { BestProducts } from '../../components'
+import { useStateContext } from '../../context/StateContext'
+
+
 
 const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available} = product
+  const {quantity, increase, decrease, onAdd} = useStateContext()
+  const [selectedColor, setSelectedColor] = useState(color[0])
+  
+//   const SELECTED_PRODUCT = {
+//     "image": image,
+//     "name": name,
+//     "details": details,
+//     "price": price,
+//     "color": selectedColor,
+//     "available": available
+// }
 
   const [index, setIndex] = useState(0)
   const check = (value) =>{
@@ -34,9 +48,9 @@ const ProductDetails = ({product, products, recProducts}) => {
                 <p>{details}</p>
                 <div>
                   <h4>Choose your color:</h4>
-                  <select className='form-select' aria-label='Choose color'>
+                  <select className='form-select' aria-label='Choose color' value={selectedColor} onChange={(e)=> {setSelectedColor(e.target.value)}}>
                     {color?.map((item,id)=>(
-                      <option selected>{item}</option>
+                      <option selected key={id} value = {item}>{item}</option>
                     ))}
                   </select>
                 </div>
@@ -45,19 +59,19 @@ const ProductDetails = ({product, products, recProducts}) => {
                 <div className='quantity'>
                     <h3>Quantity:</h3>
                     <p className='quantity-desc'>
-                        <span className='minus' onClick= ''>
+                        <span className='minus' onClick= {decrease}>
                             <AiOutlineMinus />
                         </span>
                         <span className='num'>
-                            30
+                            {quantity}
                         </span>
-                        <span className='plus' onClick= ''>
+                        <span className='plus' onClick= {increase}>
                             <AiOutlinePlus />
                         </span>
                     </p>
                 </div>
                 <div className='buttons'>
-                    <button type='button' className='add-to-cart' onClick= '' disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
+                    <button type='button' className='add-to-cart' onClick= {()=> onAdd(product, quantity)} disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
                     <button type='button' className='buy-now' onClick= '' disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
                 </div>
             </div>
