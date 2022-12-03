@@ -70,7 +70,12 @@ const Cart = () => {
               <h3>${totalPrice.toFixed(2)}</h3>
             </div>
             <div className='btn-container'>
-              <button type='button' className='btn btn-primary mt-3' onClick = {()=> console.log(cartItems)} >Check Out</button>
+              <Link href= '/checkout'>
+              
+                <button type='button' className='btn btn-primary mt-3' onClick = {()=> {
+                  localStorage.setItem('items', JSON.stringify(cartItems))
+                }} >Check Out</button>
+              </Link>
             </div>
           </div>
         )}
