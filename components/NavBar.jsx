@@ -7,7 +7,7 @@ import Cart from './Cart'
 import NavItems from './NavItems'
 
 const NavBar = () => {
-  const {showCart, setShowCart, showNav, setShowNav} = useStateContext();
+  const {showCart, setShowCart, showNav, setShowNav, totalQuantities} = useStateContext();
   return (
     <div className='navbar navbar-inverse fixed-top navbar-container'>
       <button type='button' className='cart-icon' onClick={()=>setShowNav(true)}>
@@ -21,7 +21,7 @@ const NavBar = () => {
       </Link>
       <button type='button' className='cart-icon' onClick= {()=> setShowCart(true)}>
         <AiOutlineShopping />
-        <span className='cart-item-qty'>1</span>
+        <span className='cart-item-qty'>{totalQuantities}</span>
       </button>
       {showCart?<Cart />:null}
 

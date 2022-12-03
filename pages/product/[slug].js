@@ -7,18 +7,24 @@ import { useStateContext } from '../../context/StateContext'
 
 
 const ProductDetails = ({product, products, recProducts}) => {
-  const {image, name, details, price, color, available} = product
-  const {quantity, increase, decrease, onAdd} = useStateContext()
+  const {image, name, details, price, color, available, _id} = product
+  const {quantity, increase, decrease, onAdd, setShowCart} = useStateContext()
   const [selectedColor, setSelectedColor] = useState(color[0])
   
-//   const SELECTED_PRODUCT = {
-//     "image": image,
-//     "name": name,
-//     "details": details,
-//     "price": price,
-//     "color": selectedColor,
-//     "available": available
-// }
+  const SELECTED_PRODUCT = {
+    "_id": _id + selectedColor,
+    "image": image,
+    "name": name,
+    "details": details,
+    "price": price,
+    "color": selectedColor,
+    "available": available
+}
+
+const handleBuyNow = () => {
+    onAdd(SELECTED_PRODUCT, quantity)
+    setShowCart(true)
+}
 
   const [index, setIndex] = useState(0)
   const check = (value) =>{
@@ -50,7 +56,7 @@ const ProductDetails = ({product, products, recProducts}) => {
                   <h4>Choose your color:</h4>
                   <select className='form-select' aria-label='Choose color' value={selectedColor} onChange={(e)=> {setSelectedColor(e.target.value)}}>
                     {color?.map((item,id)=>(
-                      <option selected key={id} value = {item}>{item}</option>
+                      <option defaultValue={item} key={id} value = {item}>{item}</option>
                     ))}
                   </select>
                 </div>
@@ -71,8 +77,8 @@ const ProductDetails = ({product, products, recProducts}) => {
                     </p>
                 </div>
                 <div className='buttons'>
-                    <button type='button' className='add-to-cart' onClick= {()=> onAdd(product, quantity)} disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
-                    <button type='button' className='buy-now' onClick= '' disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
+                    <button type='button' className='add-to-cart' onClick= {()=> onAdd(SELECTED_PRODUCT, quantity)} disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
+                    <button type='button' className='buy-now' onClick= {handleBuyNow} disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
                 </div>
             </div>
         </div>
