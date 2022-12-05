@@ -686,38 +686,43 @@ padding: 6px;
   padding: 50px;
   border-radius: 15px;
   min-height: 100vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
+
 }
 .header-checkout{
   width: 100%;
   background-color: white;
-  padding: .3rem;
+  padding: .2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .info-container{
-  width: 100%;
+  max-width: 100%;
   background-color: white;
-  margin-top: 40px;
-  padding: 50px;
-
+  padding: 3rem;
+  border-radius: 15px;
 }
 
 .promo-box{
-  width: 100%;
-  background-color: white;
+  max-width: 100%;
+  background-color: #dcdcdc;
   padding: 3rem;
   border-radius: 15px;
 }
 .promo-box p {
   font-size: 1.5em;
+}
+
+.form-alert{
+  border-color: red;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.form-alert:focus{
+  border-color: red;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
 .success, .cancel{
