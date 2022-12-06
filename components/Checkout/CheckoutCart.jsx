@@ -16,7 +16,7 @@ const CheckoutCart = ({cartItems}) => {
                     </p> 
                 </div>
                 <div className='mt-2 checkout-font col'>
-                    <p className='checkout-price px-4 px-md-5'>{item.price}$</p>
+                    <p className='px-4 px-md-5'>{item.price}$</p>
                 </div>
             </div>
         ))}    
