@@ -453,6 +453,19 @@ padding: 20px 10px;
   font-size: 22px;
 
 }
+.checkout-quantity{
+  font-weight: bold;
+}
+.checkout-img {
+  width: 75px;
+  height: 75px;
+}
+.checkout-price {
+  margin-left: 230px;
+}
+.checkout-font{
+  font-size: 11px;
+}
 .remove-item{
   font-size: 28px;
   color: #f02d34;

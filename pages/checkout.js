@@ -1,17 +1,15 @@
-import React, {use, useState} from 'react'
+import React from 'react'
 import { useStateContext } from '../context/StateContext';
 import { Promotion } from '../components';
 
 const checkout = () => {
-    // const [isEmpty, setIsEmpty] = useState(true)
     const {cartItems} = useStateContext();
     
   return (
     <div className='checkout-wrapper'>
-        <div className='checkout'>
-            <Promotion text={"Your cart is empty"} isEmpty = {!cartItems.length > 0? false: true} />
-        </div>
-    
+      <div className='checkout'>
+        <Promotion text={"Your cart is empty"} isEmpty = {cartItems.length > 0? false: true} />
+      </div>
     </div>
   )
 }

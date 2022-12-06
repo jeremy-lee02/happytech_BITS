@@ -1,37 +1,60 @@
 import React, {createContext, useContext, useState, useEffect} from 'react'
 import {toast} from 'react-hot-toast'
 
-
 const Context = createContext();
 
+
+
 export const StateContext = ({children}) =>{
+    const initialState = [];
     const [showCart, setShowCart] = useState(false)
     const [showNav, setShowNav] = useState(false)
     const [quantity, setQuantity] = useState(1)
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState(initialState)
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     let foundItem;
     let index
-    let selectedColor
+    useEffect(()=>{
+        const cartData = JSON.parse(sessionStorage.getItem("cart"))
+        const totalQuantities1 = JSON.parse(sessionStorage.getItem("totalQuantities"))
+        const totalPrice1 = JSON.parse(sessionStorage.getItem("totalPrice"))
+          if (cartData) {
+              setCartItems(cartData)
+              setTotalPrice(totalPrice1)
+              setTotalQuantities(totalQuantities1)
+          }else{
+            setCartItems([])
+          }
+      },[])
+    
+      useEffect(() => {
+        if (cartItems !== []){
+          sessionStorage.setItem("cart", JSON.stringify(cartItems))
+          sessionStorage.setItem("totalQuantities", totalQuantities)
+          sessionStorage.setItem("totalPrice", totalPrice)
+          }
+        }, [cartItems])
+    
 
     const onAdd = (product, quantity) => {
         const checkProductInCart = cartItems.find(item => item._id === product._id)
         setTotalPrice(prev => prev + product.price * quantity)
         setTotalQuantities(prev => prev + quantity)
         toast.success(`${quantity} ${product.name} added to the cart`)
-        if(checkProductInCart){
-            const updateCartItems = cartItems.map(cartProduct => {
-                if (cartProduct._id === product._id) return {
-                    ...cartProduct, quantity: cartProduct.quantity + quantity
-                }
+        if(checkProductInCart) {
+            const updatedCartItem = cartItems.map((cartProduct) => {
+              if(cartProduct._id === product._id) {
+                cartProduct.quantity = cartProduct.quantity + quantity;
+              }
+              return cartProduct
             })
-            setCartItems(updateCartItems)
+            setCartItems(updatedCartItem)
+
         }else {
             product.quantity = quantity
             setCartItems([...cartItems, {...product}])
         }
-        console.log(product)
     }
     const removeItem = (product) =>{
         foundItem = cartItems.find(item => item._id === product._id)
@@ -71,7 +94,7 @@ export const StateContext = ({children}) =>{
     <Context.Provider value={{
         showCart, setShowCart,
         showNav, setShowNav, 
-        quantity, increase, decrease, onAdd,
+        quantity, increase, decrease, onAdd, setTotalPrice,
         totalQuantities, removeItem,cartItems,totalPrice,
         setTotalQuantities, setCartItems, toggleCartItem
 

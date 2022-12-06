@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import{BestProducts, FooterBanner, Banner} from '../components/index'
 import { client } from '../lib/client'
+import { useStateContext } from '../context/StateContext'
 
 
 export default function Home({banners, products, bestSellingProducts}) {
+
+  const {setCartItems,setTotalPrice,setTotalQuantities, cartItems, totalQuantities, totalPrice} = useStateContext()
+  
+
+
   return (
     <div className='container-fluid home'>
       <Banner banners={banners} />

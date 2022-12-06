@@ -1,28 +1,40 @@
-import React, {useState} from 'react'
+import React, {useState,useMemo, useEffect} from 'react'
 import { client, urlFor } from '../../lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineStar, AiFillStar,} from 'react-icons/ai'
 import { BestProducts } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 
 
-
 const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available, _id} = product
-  const {quantity, increase, decrease, onAdd, setShowCart} = useStateContext()
-  const [selectedColor, setSelectedColor] = useState(color[0])
-  
-  const SELECTED_PRODUCT = {
-    "_id": _id + selectedColor,
-    "image": image,
-    "name": name,
-    "details": details,
-    "price": price,
-    "color": selectedColor,
-    "available": available
+  const {quantity, increase, decrease, onAdd, setShowCart, cartItems } = useStateContext()
+  const [selectedColor, setSelectedColor] = useState('')
+  const [SELECTED_PRODUCT, setSELECTED_PRODUCT] = useState({})
+
+useEffect(()=>{
+    setSelectedColor(color[0])
+} ,[product, color])
+
+
+const handleCheck = () =>{
+    // console.log("-------color--------")
+    // console.log(color)
+    // console.log("--------selected color-------")
+    // console.log(selectedColor)
+    console.log(cartItems)
 }
+  
 
 const handleBuyNow = () => {
-    onAdd(SELECTED_PRODUCT, quantity)
+    onAdd({
+        "_id": _id + selectedColor,
+        "image": image,
+        "name": name,
+        "details": details,
+        "price": price,
+        "color": selectedColor,
+        "available": available,
+        "quantity": quantity}, quantity)
     setShowCart(true)
 }
 
@@ -77,8 +89,20 @@ const handleBuyNow = () => {
                     </p>
                 </div>
                 <div className='buttons'>
-                    <button type='button' className='add-to-cart' onClick= {()=> onAdd(SELECTED_PRODUCT, quantity)} disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
+                    <button type='button' className='add-to-cart' 
+                    onClick= {()=> onAdd({
+                        "_id": _id + selectedColor,
+                        "image": image,
+                        "name": name,
+                        "details": details,
+                        "price": price,
+                        "color": selectedColor,
+                        "available": available,
+                        "quantity": quantity
+                    }, quantity)} 
+                    disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
                     <button type='button' className='buy-now' onClick= {handleBuyNow} disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
+                    {/* <button type='button' className='btn btn-secondary' onClick={handleCheck}>Check</button> */}
                 </div>
             </div>
         </div>

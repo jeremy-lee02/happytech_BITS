@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import Link from 'next/link'
 import {Form} from 'react-bootstrap'
+import CheckoutCart from './CheckoutCart'
+import {useStateContext} from '../../context/StateContext'
 
 const PROMOTION = "WORLDCUP10"
 
@@ -12,6 +14,8 @@ const Promotion = ({text, isEmpty}) => {
   const [note, setNote] = useState('')
   const [promo, setPromo] = useState('')
   const [checkPromo, setCheckPromo] = useState(true);
+
+  const {cartItems} = useStateContext()
 
 
   //Check Promo
@@ -54,7 +58,7 @@ const Promotion = ({text, isEmpty}) => {
                 onChange={(e) => setName(e.target.value)} />
                 <label className='fs-5 text'>Full Name</label>
               </div>
-              <div className='form-floating  py-2'>
+              <div className='form-floating py-2'>
                 <input className='form-control' 
                 type="email" 
                 placeholder='' 
@@ -98,6 +102,8 @@ const Promotion = ({text, isEmpty}) => {
           </div>
           {/* Right section */}
           <div className='promo-box border border-2 col'>
+            <CheckoutCart cartItems={cartItems} />
+            <hr />
             <div className='row'>
               <div className='form-floating col-lg-9 mt-2'>
                   <input className= {`form-control ${checkPromo? '': 'form-alert'}`}

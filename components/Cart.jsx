@@ -6,11 +6,19 @@ import toast from 'react-hot-toast';
 
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
+import { useEffect } from 'react';
 
 
 const Cart = () => {
   const cartRef = useRef()
   const {totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItem, removeItem} = useStateContext()
+  // const localCart = JSON.parse(localStorage.getItem('cart'))
+
+  // useEffect(()=>{
+  //   console.log(localCart)
+  // }, [])
+
+
   return (
     <div className='cart-wrapper' ref={cartRef}>
       <div className='cart-container'>
@@ -71,13 +79,14 @@ const Cart = () => {
             </div>
             <div className='btn-container'>
               <Link href= '/checkout'>
-              
-                <button type='button' className='btn btn-primary mt-3' onClick = {()=> {
-                  localStorage.setItem('items', JSON.stringify(cartItems))
-                }} >Check Out</button>
+                <button type='button' className='btn btn-primary mt-3'>Check Out</button>
               </Link>
             </div>
+            {/* <div className='btn-container'>
+              <button type='button' className='btn btn-primary mt-3'onClick={()=>console.log()}>Test</button>
+            </div> */}
           </div>
+          
         )}
       </div>
     </div>
