@@ -3,8 +3,11 @@ import Link from 'next/link'
 import {Form} from 'react-bootstrap'
 import CheckoutCart from './CheckoutCart'
 import {useStateContext} from '../../context/StateContext'
+import {toast} from 'react-hot-toast'
 
 const PROMOTION = "WORLDCUP10"
+const promo = 10;
+const shipping_fee = 5
 
 const Promotion = ({text, isEmpty}) => {
   const [name, setName] = useState('')
@@ -12,20 +15,38 @@ const Promotion = ({text, isEmpty}) => {
   const [phone, setPhone] = useState('')
   const [address, setAddress] = useState('')
   const [note, setNote] = useState('')
-  const [promo, setPromo] = useState('')
-  const [checkPromo, setCheckPromo] = useState(true);
-
-  const {cartItems} = useStateContext()
+  const [promoValue, setPromoValue] = useState('')
+  const [checkPromo, setCheckPromo] = useState(false);
+  const [isError, setIsError] = useState(true)
+  const {cartItems, totalPrice} = useStateContext()
 
 
   //Check Promo
   const handlePromo = () => {
-    if (promo !== PROMOTION) {
+    if (promoValue !== PROMOTION) {
+      setIsError(false)
       setCheckPromo(false)
+      toast.error(`There is no ${promoValue} promotion`)
     }else{
-      alert("You have added your promotion")
+      toast.success(`You have added your promotion ${PROMOTION}`)
       setCheckPromo(true)
+      setIsError(true)
     }
+  }
+
+  //Calculate final price without promo
+  const finalPrice = () => {
+    let FINAL_PRICE_WITH_OUT_TAX = 0
+    let FINAL_PRICE = 0
+    if(checkPromo){
+      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shipping_fee - promo
+    }else{
+      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shipping_fee
+    }
+
+    FINAL_PRICE = FINAL_PRICE_WITH_OUT_TAX + (FINAL_PRICE_WITH_OUT_TAX * 0.08)
+    
+    return FINAL_PRICE
   }
 
   return (
@@ -46,9 +67,9 @@ const Promotion = ({text, isEmpty}) => {
         <>
         <div className='row gap-3'>
           {/* Left section */}
-          <div className='info-container px-5 border border-2 col-12 col-lg-6'>
+          <div className='info-container px-5 border border-2 col-12 col-xxl-6'>
             <h3>Shipping Information</h3>
-            <Form className='col g-1 needs-validation'>
+            <Form className='needs-validation'>
               <div className='form-floating py-2'>
                 <input className='form-control' 
                 required
@@ -102,33 +123,41 @@ const Promotion = ({text, isEmpty}) => {
           </div>
           {/* Right section */}
           <div className='promo-box border border-2 col'>
-            <CheckoutCart cartItems={cartItems} />
+            <div className='checkout-cart-container p-3'>
+              <CheckoutCart cartItems={cartItems} />
+            </div>
             <hr />
             <div className='row'>
               <div className='form-floating col-lg-9 mt-2'>
-                  <input className= {`form-control ${checkPromo? '': 'form-alert'}`}
+                  <input className= {`form-control ${isError? '': 'form-alert'}`}
                     type="text" 
                     placeholder='' 
-                    value={promo} 
-                    onChange={(e) => setPromo(e.target.value)} />
+                    value={promoValue} 
+                    onChange={(e) => setPromoValue(e.target.value)} />
                   <label className='fs-5 text mx-3'>Promotion</label>
               </div>
               <div className='col py-2'>
                 <button className='btn btn-secondary mt-2 px-4 py-2 fs-5 text' onClick={handlePromo}>Apply</button>
               </div>
-              {!checkPromo?(
+              {!isError?(
               <p className='fs-5 text-danger pl-2 pt-2'>* This promotion is not exist</p>) : null}
             </div>
             {/* Total */}
             <hr />
             <div className='d-flex justify-content-between'>
               <h4 className='fs-4 text-secondary'>Total Products Price:</h4>
-              <p>50$</p>
+              <p>{totalPrice.toFixed(2)}$</p>
             </div>
             <div className='d-flex justify-content-between'>
               <h4 className='fs-4 text-secondary'>Shipping Fee:</h4>
-              <p>10$</p>
+              <p>{shipping_fee}.00$</p>
             </div>
+            {checkPromo? (
+              <div className='d-flex justify-content-between'>
+                <h4 className='fs-4 text-secondary'>Promotion:</h4>
+                <p className='text-danger'>-{promo}.00$</p>
+              </div>
+            ):null}
             <div className='d-flex justify-content-between'>
               <h4 className='fs-4 text-secondary'>Tax:</h4>
               <p>8%</p>
@@ -136,7 +165,7 @@ const Promotion = ({text, isEmpty}) => {
             <hr />
             <div className='d-flex justify-content-between'>
               <h4 className='fs-4 text-'>Total Payment:</h4>
-              <p>60$</p>
+              <p>{finalPrice().toFixed(2)}</p>
             </div>
           </div>
         </div>
