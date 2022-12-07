@@ -6,10 +6,10 @@ import { useStateContext } from '../context/StateContext'
 
 export default function Home({banners, products, bestSellingProducts}) {
 
-  const {setCartItems,setTotalPrice,setTotalQuantities, cartItems, totalQuantities, totalPrice} = useStateContext()
-  
-
-
+  const {setProducts} = useStateContext()
+  useEffect(()=>{
+    setProducts(products)
+  },[])
   return (
     <div className='container-fluid home'>
       <Banner banners={banners} />
@@ -25,7 +25,6 @@ export default function Home({banners, products, bestSellingProducts}) {
 }
 
 export const getServerSideProps = async () =>{
-  
   const query = '*[_type == "products"]'
   const products = await client.fetch(query)
   const bestSellingProducts = products.sort((a,b)=> b.sales - a.sales)
@@ -36,5 +35,4 @@ export const getServerSideProps = async () =>{
   return {
     props: {banners, products, bestSellingProducts }
   }
-
 }

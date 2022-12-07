@@ -10,7 +10,7 @@ const Banner = ({banners}) => {
         {banners.map(item => (
           <Carousel.Item key={item._id}>
             <div className='hero-banner-container'>
-              <img src={urlFor(item.image)} className={'banner-img'} />
+              <img src={urlFor(item.image)} className={'banner-img'} alt = {item.name} />
             </div>  
           </Carousel.Item>
         ))}

@@ -9,8 +9,8 @@ const Items = ({icon,text}) => {
     <>
     <Link href={"./"}>
         <li onClick={() => setShowNav(false)} className="menu_item my-5">
-            <FontAwesomeIcon className="icon fa-fw" icon={icon}/>
-            <span className="menu_text m-2">{text}</span>
+            <FontAwesomeIcon className="icon fa-fw fs-4" icon={icon}/>
+            <span className="menu_text m-2 fs-4 px-2">{text}</span>
         </li>
     </Link>
   </>

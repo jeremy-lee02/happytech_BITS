@@ -5,27 +5,34 @@ import {AiOutlineShopping} from 'react-icons/ai'
 import {useStateContext} from '../context/StateContext'
 import Cart from './Cart'
 import NavItems from './NavItems'
+import Search from './Search/Search'
 
 const NavBar = () => {
   const {showCart, setShowCart, showNav, setShowNav, totalQuantities} = useStateContext();
   return (
+    <>
     <div className='navbar navbar-inverse fixed-top navbar-container'>
-      <button type='button' className='cart-icon' onClick={()=>setShowNav(true)}>
-        <Image src = {"/../public/menu.png"} objectFit='contain' width={60} height={60} />
-      </button>
-        {showNav?<NavItems />:null}
       <Link href={'/'}>
         <button type='button' className='cart-icon1'>
-            <Image src = {"/../public/logo.png"} objectFit='contain' width={90} height={90} />
+            <Image src = {"/../public/logo.png"} objectFit='contain' width={90} height={90} alt={'menu'} />
         </button>
       </Link>
-      <button type='button' className='cart-icon' onClick= {()=> setShowCart(true)}>
-        <AiOutlineShopping />
-        <span className='cart-item-qty'>{totalQuantities}</span>
-      </button>
+      <Search />
+      <div className='cartNav-container'>
+        <button type='button' className='cart-icon' onClick= {()=> setShowCart(true)}>
+          <AiOutlineShopping />
+          <span className='cart-item-qty'>{totalQuantities}</span>
+        </button>
+      </div>
       {showCart?<Cart />:null}
-
+      <div className='menu-nav-container'>
+        <button type='button' className='cart-icon' onClick={()=>setShowNav(true)}>
+          <Image src = {"/../public/menu.png"} objectFit='contain' width={60} height={60}  alt={'menu'}/>
+        </button>
+      </div>
+      {showNav?<NavItems />:null}
     </div>
+    </>
   )
 }
 

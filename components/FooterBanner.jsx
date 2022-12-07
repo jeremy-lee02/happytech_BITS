@@ -14,8 +14,7 @@ const FooterBanner = () => {
           <h3>Description: </h3>
           <p>Best desktop gears on the market</p>
         </div>
-          <Image src={'/../public/logo.png'} fill objectFit='contain' className='footer-banner-image' />
- 
+          <Image src={'/../public/logo.png'} fill objectFit='contain' className='footer-banner-image' alt='logo' />
       </div>
     </div>
   )

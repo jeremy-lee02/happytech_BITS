@@ -7,13 +7,17 @@ import { useStateContext } from '../../context/StateContext'
 
 const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available, _id} = product
-  const {quantity, increase, decrease, onAdd, setShowCart, cartItems } = useStateContext()
+  const {quantity, increase, decrease, onAdd, setShowCart, cartItems, setProducts } = useStateContext()
   const [selectedColor, setSelectedColor] = useState('')
   const [SELECTED_PRODUCT, setSELECTED_PRODUCT] = useState({})
 
 useEffect(()=>{
     setSelectedColor(color[0])
 } ,[product, color])
+
+useEffect(()=>{
+    setProducts(products)
+} ,[])
 
 
 const handleCheck = () =>{
@@ -49,12 +53,13 @@ const handleBuyNow = () => {
         <div className='product-detail-container'>
             <div>
                 <div className=''>
-                    <img src= {urlFor(image && image[index])} className= 'product-detail-image' />
+                    <img src= {urlFor(image && image[index])} className= 'product-detail-image' alt={name} />
                 </div>
                 <div className='small-images-container'>
                     {image?.map((item,i)=>(
                         <img src= {urlFor(item)} 
                         className= {i === index? 'small-image selected-image': 'small-image'} 
+                        alt={name}
                         onMouseEnter= {()=>setIndex(i)}
                         key = {i} />
                     ))}

@@ -8,7 +8,7 @@ const CheckoutCart = ({cartItems}) => {
         {cartItems.map((item)=>(
             <div className='row gap-5 pb-3' key={item._id}>
                 <div className='rounded col-1'>
-                    <img src={urlFor(item.image[0])} width={75} height={75} className="rounded" />
+                    <img src={urlFor(item.image[0])} width={75} height={75} className="rounded" alt= {item.name} />
                 </div>
                 <div className='mt-2 checkout-font col'>
                     <p>{item.name} {item.color}

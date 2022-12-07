@@ -109,7 +109,7 @@ const Promotion = ({text, isEmpty}) => {
               <div className='form-floating col-lg-9 mt-2'>
                   <input className= {`form-control ${isError? '': 'form-alert'}`}
                     type="text" 
-                    placeholder='' 
+                    placeholder='Promotion' 
                     ref={promoRef} />
                   <label className='fs-5 text mx-3'>Promotion</label>
               </div>

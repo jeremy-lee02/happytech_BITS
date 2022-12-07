@@ -13,12 +13,14 @@ export const StateContext = ({children}) =>{
     const [cartItems, setCartItems] = useState(initialState)
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
+    const [products, setProducts] = useState([])
+
     let foundItem;
     let index
     useEffect(()=>{
         const cartData = JSON.parse(sessionStorage.getItem("cart"))
         const totalQuantities1 = JSON.parse(sessionStorage.getItem("totalQuantities"))
-        const totalPrice1 = JSON.parse(sessionStorage.getItem("totalPrice"))
+        const totalPrice1 = JSON.parse(sessionStorage.getItem("totalPrice")) 
           if (cartData) {
               setCartItems(cartData)
               setTotalPrice(totalPrice1)
@@ -33,7 +35,7 @@ export const StateContext = ({children}) =>{
           sessionStorage.setItem("cart", JSON.stringify(cartItems))
           sessionStorage.setItem("totalQuantities", totalQuantities)
           sessionStorage.setItem("totalPrice", totalPrice)
-          }
+        }
         }, [cartItems])
     
 
@@ -96,7 +98,8 @@ export const StateContext = ({children}) =>{
         showNav, setShowNav, 
         quantity, increase, decrease, onAdd, setTotalPrice,
         totalQuantities, removeItem,cartItems,totalPrice,
-        setTotalQuantities, setCartItems, toggleCartItem
+        setTotalQuantities, setCartItems, toggleCartItem,
+        products, setProducts
 
     }}>
         {children}
