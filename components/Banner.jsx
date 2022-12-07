@@ -8,7 +8,7 @@ const Banner = ({banners}) => {
     <div className='container-fluid'>
       <Carousel>
         {banners.map(item => (
-          <Carousel.Item>
+          <Carousel.Item key={item._id}>
             <div className='hero-banner-container'>
               <img src={urlFor(item.image)} className={'banner-img'} />
             </div>  
