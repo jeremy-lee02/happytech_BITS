@@ -8,3 +8,5 @@ export {default as NavItems} from './NavItems';
 export {default as BestProducts} from './BestProducts';
 export {default as Promotion} from './Checkout/Promotion';
 export {default as CheckoutCart} from './Checkout/CheckoutCart';
+export {default as InformationForm} from './Checkout/InformationForm';
+export {default as ResultCheckout} from './Checkout/ResultCheckout';

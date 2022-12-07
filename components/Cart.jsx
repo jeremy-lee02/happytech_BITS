@@ -79,7 +79,7 @@ const Cart = () => {
             </div>
             <div className='btn-container'>
               <Link href= '/checkout'>
-                <button type='button' className='btn btn-primary mt-3'>Check Out</button>
+                <button type='button' className='btn btn-primary mt-3' onClick={()=> setShowCart(false)}>Check Out</button>
               </Link>
             </div>
             {/* <div className='btn-container'>

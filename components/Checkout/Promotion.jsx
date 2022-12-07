@@ -1,32 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
+import Select from 'react-select'
 import Link from 'next/link'
-import {Form} from 'react-bootstrap'
-import CheckoutCart from './CheckoutCart'
+import {Form, FormSelect} from 'react-bootstrap'
+import {CheckoutCart,InformationForm,ResultCheckout} from '../index'
 import {useStateContext} from '../../context/StateContext'
 import {toast} from 'react-hot-toast'
+import { AiOutlineDeliveredProcedure, AiOutlineBank } from 'react-icons/ai'
 
 const PROMOTION = "WORLDCUP10"
 const promo = 10;
 const shipping_fee = 5
 
 const Promotion = ({text, isEmpty}) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
-  const [note, setNote] = useState('')
-  const [promoValue, setPromoValue] = useState('')
+  // UseRef()
+  const nameRef = useRef()
+  const emailRef = useRef()
+  const phoneRef = useRef()
+  const addressRef = useRef()
+  const noteRef = useRef()
+  const promoRef = useRef()
+  const shippingRef = useRef()
+  //--------------------------------------------------
+  //UseState()
   const [checkPromo, setCheckPromo] = useState(false);
   const [isError, setIsError] = useState(true)
+  // Custom Hooks
   const {cartItems, totalPrice} = useStateContext()
+  //Option
+  const options = [
+    { value: "cod", label: <><AiOutlineDeliveredProcedure /> Cash on delivery</> },
+    { value: "banking", label: <><AiOutlineBank /> Internet Banking</> }
+];
 
 
   //Check Promo
   const handlePromo = () => {
-    if (promoValue !== PROMOTION) {
+    if (promoRef.current.value !== PROMOTION) {
       setIsError(false)
       setCheckPromo(false)
-      toast.error(`There is no ${promoValue} promotion`)
+      toast.error(`There is no ${promoRef.current.value} promotion`)
     }else{
       toast.success(`You have added your promotion ${PROMOTION}`)
       setCheckPromo(true)
@@ -34,7 +46,7 @@ const Promotion = ({text, isEmpty}) => {
     }
   }
 
-  //Calculate final price without promo
+  //Calculate final price
   const finalPrice = () => {
     let FINAL_PRICE_WITH_OUT_TAX = 0
     let FINAL_PRICE = 0
@@ -43,11 +55,11 @@ const Promotion = ({text, isEmpty}) => {
     }else{
       FINAL_PRICE_WITH_OUT_TAX = totalPrice + shipping_fee
     }
-
     FINAL_PRICE = FINAL_PRICE_WITH_OUT_TAX + (FINAL_PRICE_WITH_OUT_TAX * 0.08)
-    
     return FINAL_PRICE
   }
+
+
 
   return (
     <div className='container'>
@@ -68,56 +80,22 @@ const Promotion = ({text, isEmpty}) => {
         <div className='row gap-3'>
           {/* Left section */}
           <div className='info-container px-5 border border-2 col-12 col-xxl-6'>
-            <h3>Shipping Information</h3>
-            <Form className='needs-validation'>
-              <div className='form-floating py-2'>
-                <input className='form-control' 
-                required
-                type="text" 
-                placeholder='' 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} />
-                <label className='fs-5 text'>Full Name</label>
+            <Form className='needs-validation '>
+              <h3>Shipping Information</h3>
+              <div className='py-3'>
+                <InformationForm text={"Full Name"} type={"text"} value = {nameRef} isRequired={true} />
+                <InformationForm text={"Email"} type={"email"} value = {emailRef} isRequired={true} />
+                <InformationForm text={"Phone Number"} type={"number"} value = {phoneRef} isRequired={true} />
+                <InformationForm text = {"Address"} type={"text"} value = {addressRef} isRequired={true} />
+                <InformationForm text = {"Note"} type={"text"} value = {noteRef} isRequired={false} />
               </div>
-              <div className='form-floating py-2'>
-                <input className='form-control' 
-                type="email" 
-                placeholder='' 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required />
-                <label className='fs-5 text'>Email</label>
-              </div>
-
-              <div className='form-floating py-2'>
-                <input className='form-control' 
-                type="number" 
-                placeholder='' 
-                value={phone} 
-                onChange={(e) => setPhone(e.target.value)} 
-                required />
-                <label className='fs-5 text'>Phone</label>
-              </div>
-
-              <div className='form-floating py-2'>
-                <input className='form-control' 
-                type="text" 
-                placeholder='' 
-                value={address} 
-                onChange={(e) => setAddress(e.target.value)} 
-                required />
-                <label className='fs-5 text'>Address</label>
-              </div>
-              <div className='form-floating py-2'>
-                <input className='form-control' 
-                type="text" 
-                placeholder='' 
-                value={note} 
-                onChange={(e) => setNote(e.target.value)} />
-                <label className='fs-5 text'>Note (Optional)</label>
+              <h3>Shipping Method</h3>
+              <div className='py-3'>
+                <Select className='fs-5' placeholder='Select Shipping Method' options={options} ref={shippingRef} />
+                <div className='card p-4 shipping-method-card mt-2'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id consequuntur tempore doloribus saepe. Commodi quo optio, quae tempore ullam cumque? Necessitatibus eius sint blanditiis in, corporis aut vel laborum?</div>
               </div>
               <div>
-                <button className='btn btn-secondary mt-2 px-2'>Check out</button>
+                <button type='button' className='btn btn-secondary mt-2 px-2'>Check out</button>
               </div>
             </Form>
           </div>
@@ -132,8 +110,7 @@ const Promotion = ({text, isEmpty}) => {
                   <input className= {`form-control ${isError? '': 'form-alert'}`}
                     type="text" 
                     placeholder='' 
-                    value={promoValue} 
-                    onChange={(e) => setPromoValue(e.target.value)} />
+                    ref={promoRef} />
                   <label className='fs-5 text mx-3'>Promotion</label>
               </div>
               <div className='col py-2'>
@@ -144,29 +121,14 @@ const Promotion = ({text, isEmpty}) => {
             </div>
             {/* Total */}
             <hr />
-            <div className='d-flex justify-content-between'>
-              <h4 className='fs-4 text-secondary'>Total Products Price:</h4>
-              <p>{totalPrice.toFixed(2)}$</p>
-            </div>
-            <div className='d-flex justify-content-between'>
-              <h4 className='fs-4 text-secondary'>Shipping Fee:</h4>
-              <p>{shipping_fee}.00$</p>
-            </div>
+            <ResultCheckout textHead={"Total Product Price:"} classHead= {'text-secondary'} text={`${totalPrice.toFixed(2)}$`} />
+            <ResultCheckout textHead={"Shipping Fee:"} classHead= {'text-secondary'} text={`${shipping_fee}.00$`} />
+            <ResultCheckout textHead={"Tax:"} classHead= {'text-secondary'} text={`8%`} />
             {checkPromo? (
-              <div className='d-flex justify-content-between'>
-                <h4 className='fs-4 text-secondary'>Promotion:</h4>
-                <p className='text-danger'>-{promo}.00$</p>
-              </div>
+              <ResultCheckout textHead={"Promotion:"} classHead= {'text-secondary'} text={`-${promo}.00$`} textClass={'text-danger'} />
             ):null}
-            <div className='d-flex justify-content-between'>
-              <h4 className='fs-4 text-secondary'>Tax:</h4>
-              <p>8%</p>
-            </div>
             <hr />
-            <div className='d-flex justify-content-between'>
-              <h4 className='fs-4 text-'>Total Payment:</h4>
-              <p>{finalPrice().toFixed(2)}</p>
-            </div>
+            <ResultCheckout textHead={"Total Payment:"} text={`${finalPrice().toFixed(2)}$`} />
           </div>
         </div>
         </>

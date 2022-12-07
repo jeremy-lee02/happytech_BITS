@@ -478,7 +478,9 @@ padding: 20px 10px;
   right: 5px;
 width: 100%;
 padding: 30px 65px;
-
+}
+.shipping-method-card{
+  background-color:#dcdcdc ;
 }
 
 .btn-container{
