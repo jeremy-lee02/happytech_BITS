@@ -6,3 +6,4 @@ export {default as Layout} from './Layout';
 export {default as NavBar} from './NavBar';
 export {default as NavItems} from './NavItems';
 export {default as BestProducts} from './BestProducts';
+export {default as Items} from './NavBarComponents/Items'

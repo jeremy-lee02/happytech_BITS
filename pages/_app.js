@@ -4,7 +4,9 @@ import '../styles/globals.css'
 import {Layout} from '../components/index'
 import { StateContext } from '../context/StateContext';
 import {Toaster} from 'react-hot-toast'
-
+import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 
 
