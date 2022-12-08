@@ -5,11 +5,12 @@ import { BestProducts } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 
 
+
 const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available, _id} = product
-  const {quantity, increase, decrease, onAdd, setShowCart, cartItems, setProducts } = useStateContext()
+  const {quantity, increase, decrease, onAdd, setShowCart, setProducts } = useStateContext()
   const [selectedColor, setSelectedColor] = useState('')
-  const [SELECTED_PRODUCT, setSELECTED_PRODUCT] = useState({})
+
 
 useEffect(()=>{
     setSelectedColor(color[0])
@@ -20,13 +21,9 @@ useEffect(()=>{
 } ,[])
 
 
-const handleCheck = () =>{
-    // console.log("-------color--------")
-    // console.log(color)
-    // console.log("--------selected color-------")
-    // console.log(selectedColor)
-    console.log(cartItems)
-}
+// const handleCheck = () =>{
+//     console.log(router.pathname)
+// }
   
 
 const handleBuyNow = () => {

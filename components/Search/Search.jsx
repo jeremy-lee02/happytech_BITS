@@ -2,10 +2,12 @@ import React,{useState, useMemo} from 'react'
 import {SearchCard} from '../index'
 import { useStateContext } from '../../context/StateContext'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const Search = () => {
-  const {products, isClicked} = useStateContext()
+  const {products} = useStateContext()
   const [query, setQuery] = useState('')
+  const router = useRouter()
 
   const filteredItems = useMemo(() => {
     return products.filter(item=>{
@@ -14,11 +16,14 @@ const Search = () => {
   },[products, query])
 
   useEffect(()=>{
-    if (isClicked) {
-      setQuery("")
-    }
-  },[])
+    setQuery('')
+  },[router.asPath])
 
+  const disabled = () =>{
+    if (router.asPath === '/checkout') {
+      return true
+    }else{return false}
+  }
   return (
     <>
     <div className='position-relative m-auto w-50'>
@@ -28,6 +33,7 @@ const Search = () => {
             className="form-control rounded-input" 
             type="text" 
             placeholder="Type Product Name..." 
+            disabled= {disabled()}
             onChange={e=> setQuery(e.target.value)}
             aria-label="Search" />
           <div className='input-group-append'>

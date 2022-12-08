@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import Select from 'react-select'
 import Link from 'next/link'
 import {Form, FormSelect} from 'react-bootstrap'
-import {CheckoutCart,InformationForm,ResultCheckout} from '../index'
+import {CheckoutCart,InformationForm,ResultCheckout, MethodDes} from '../index'
 import {useStateContext} from '../../context/StateContext'
 import {toast} from 'react-hot-toast'
 import { AiOutlineDeliveredProcedure, AiOutlineBank } from 'react-icons/ai'
@@ -19,11 +19,11 @@ const Promotion = ({text, isEmpty}) => {
   const addressRef = useRef()
   const noteRef = useRef()
   const promoRef = useRef()
-  const shippingRef = useRef()
   //--------------------------------------------------
   //UseState()
   const [checkPromo, setCheckPromo] = useState(false);
   const [isError, setIsError] = useState(true)
+  const [method, setMethod] = useState('')
   // Custom Hooks
   const {cartItems, totalPrice} = useStateContext()
   //Option
@@ -31,6 +31,11 @@ const Promotion = ({text, isEmpty}) => {
     { value: "cod", label: <><AiOutlineDeliveredProcedure /> Cash on delivery</> },
     { value: "banking", label: <><AiOutlineBank /> Internet Banking</> }
 ];
+
+const handleMethodChange = selected => {
+  setMethod(selected.value)
+  console.log(selected.value)
+}
 
 
   //Check Promo
@@ -91,8 +96,8 @@ const Promotion = ({text, isEmpty}) => {
               </div>
               <h3>Shipping Method</h3>
               <div className='py-3'>
-                <Select className='fs-5' placeholder='Select Shipping Method' options={options} ref={shippingRef} />
-                <div className='card p-4 shipping-method-card mt-2'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id consequuntur tempore doloribus saepe. Commodi quo optio, quae tempore ullam cumque? Necessitatibus eius sint blanditiis in, corporis aut vel laborum?</div>
+                <Select className='fs-5' placeholder='Select Shipping Method' onChange = {handleMethodChange} options={options}/>
+                <MethodDes method={method}  />
               </div>
               <div>
                 <button type='button' className='btn btn-secondary mt-2 px-2'>Check out</button>
@@ -109,7 +114,7 @@ const Promotion = ({text, isEmpty}) => {
               <div className='form-floating col-lg-9 mt-2'>
                   <input className= {`form-control ${isError? '': 'form-alert'}`}
                     type="text" 
-                    placeholder='Promotion' 
+                    placeholder='' 
                     ref={promoRef} />
                   <label className='fs-5 text mx-3'>Promotion</label>
               </div>

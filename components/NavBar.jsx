@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Link from 'next/link'
 import  Image from 'next/image'
 import {AiOutlineShopping} from 'react-icons/ai'
@@ -7,8 +7,10 @@ import Cart from './Cart'
 import NavItems from './NavItems'
 import Search from './Search/Search'
 
+
 const NavBar = () => {
   const {showCart, setShowCart, showNav, setShowNav, totalQuantities} = useStateContext();
+  
   return (
     <>
     <div className='navbar navbar-inverse fixed-top navbar-container'>
