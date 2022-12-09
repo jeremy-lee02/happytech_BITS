@@ -13,6 +13,4 @@ const checkout = () => {
     </div>
   )
 }
-
-
 export default checkout

@@ -11,6 +11,7 @@ export {default as CheckoutCart} from './Checkout/CheckoutCart';
 export {default as InformationForm} from './Checkout/InformationForm';
 export {default as ResultCheckout} from './Checkout/ResultCheckout';
 export {default as MethodDes} from './Checkout/MethodDes'
+export {default as SelectAddress} from './Checkout/SelectAddress'
 export {default as Items} from './NavBarComponents/Items'
 export {default as Search} from './Search/Search'
 export {default as SearchCard} from './Search/SearchCard'

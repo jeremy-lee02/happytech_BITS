@@ -21,7 +21,7 @@ useEffect(()=>{
 useEffect(()=>{
     fetch('https://provinces.open-api.vn/api/d/')
         .then(res => res.json())
-        .then(data => setDistrict(()=>data.filter(item => item.province_code === 1)))
+        .then(data => setDistrict(()=>data.filter(item => item.province_code === 79)))
     setProducts(products)
 } ,[])
 
@@ -31,10 +31,24 @@ const handleCheck = () =>{
     console.log(districtName)
     const editName = districtName.map(item => {
         const splitName = item.split(" ")
-        splitName.shift()
-        
-        console.log(typeof(splitName))
+        if (splitName[0] === "Thành") {
+            splitName.shift()
+            splitName.shift()
+            splitName.shift()
+            splitName.shift()
+        }else{
+            splitName.shift()
+        }
+        let district = ""
+        splitName.forEach(element => {
+            district = district + element + " "
+        });
+        return district
+        // console.log(district)
     })
+    console.log(editName)
+
+
     
 
 }

@@ -14,9 +14,17 @@ export const StateContext = ({children}) =>{
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [products, setProducts] = useState([])
+    const [cityName, setCityName] = useState('')
+    const [provinceCode, setProvinceCode] = useState('')
+    const [districtName, setDistrictName] = useState('')
 
     let foundItem;
-    let index
+
+
+
+    
+
+
     useEffect(()=>{
         const cartData = JSON.parse(sessionStorage.getItem("cart"))
         const totalQuantities1 = JSON.parse(sessionStorage.getItem("totalQuantities"))
@@ -30,13 +38,13 @@ export const StateContext = ({children}) =>{
           }
       },[])
     
-      useEffect(() => {
+    useEffect(() => {
         if (cartItems !== []){
           sessionStorage.setItem("cart", JSON.stringify(cartItems))
           sessionStorage.setItem("totalQuantities", totalQuantities)
           sessionStorage.setItem("totalPrice", totalPrice)
         }
-        }, [cartItems])
+    }, [cartItems])
     
 
     const onAdd = (product, quantity) => {
@@ -99,7 +107,8 @@ export const StateContext = ({children}) =>{
         quantity, increase, decrease, onAdd, setTotalPrice,
         totalQuantities, removeItem,cartItems,totalPrice,
         setTotalQuantities, setCartItems, toggleCartItem,
-        products, setProducts
+        products, setProducts, setCityName, setDistrictName,
+        cityName, districtName, provinceCode, setProvinceCode
 
     }}>
         {children}

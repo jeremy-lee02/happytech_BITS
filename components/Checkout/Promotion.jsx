@@ -2,14 +2,15 @@ import React, {useState, useRef} from 'react'
 import Select from 'react-select'
 import Link from 'next/link'
 import {Form, FormSelect} from 'react-bootstrap'
-import {CheckoutCart,InformationForm,ResultCheckout, MethodDes} from '../index'
+import {CheckoutCart,InformationForm,ResultCheckout, MethodDes, SelectAddress} from '../index'
 import {useStateContext} from '../../context/StateContext'
+import useShippingFee from '../../hooks/useShippingFee'
 import {toast} from 'react-hot-toast'
 import { AiOutlineDeliveredProcedure, AiOutlineBank } from 'react-icons/ai'
 
 const PROMOTION = "WORLDCUP10"
 const promo = 10;
-const shipping_fee = 5
+
 
 const Promotion = ({text, isEmpty}) => {
   // UseRef()
@@ -24,8 +25,10 @@ const Promotion = ({text, isEmpty}) => {
   const [checkPromo, setCheckPromo] = useState(false);
   const [isError, setIsError] = useState(true)
   const [method, setMethod] = useState('')
+  
   // Custom Hooks
-  const {cartItems, totalPrice} = useStateContext()
+  const {cartItems, totalPrice, provinceCode} = useStateContext()
+  const {shippingFee} = useShippingFee()
   //Option
   const options = [
     { value: "cod", label: <><AiOutlineDeliveredProcedure /> Cash on delivery</> },
@@ -55,9 +58,9 @@ const handleMethodChange = selected => {
     let FINAL_PRICE_WITH_OUT_TAX = 0
     let FINAL_PRICE = 0
     if(checkPromo){
-      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shipping_fee - promo
+      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shippingFee - promo
     }else{
-      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shipping_fee
+      FINAL_PRICE_WITH_OUT_TAX = totalPrice + shippingFee
     }
     FINAL_PRICE = FINAL_PRICE_WITH_OUT_TAX + (FINAL_PRICE_WITH_OUT_TAX * 0.08)
     return FINAL_PRICE
@@ -91,6 +94,7 @@ const handleMethodChange = selected => {
                 <InformationForm text={"Email"} type={"email"} value = {emailRef} isRequired={true} />
                 <InformationForm text={"Phone Number"} type={"number"} value = {phoneRef} isRequired={true} />
                 <InformationForm text = {"Address"} type={"text"} value = {addressRef} isRequired={true} />
+                <SelectAddress />
                 <InformationForm text = {"Note"} type={"text"} value = {noteRef} isRequired={false} />
               </div>
               <h3>Shipping Method</h3>
@@ -126,7 +130,7 @@ const handleMethodChange = selected => {
             {/* Total */}
             <hr />
             <ResultCheckout textHead={"Total Product Price:"} classHead= {'text-secondary'} text={`${totalPrice.toFixed(2)}$`} />
-            <ResultCheckout textHead={"Shipping Fee:"} classHead= {'text-secondary'} text={`${shipping_fee}.00$`} />
+            <ResultCheckout textHead={"Shipping Fee:"} classHead= {'text-secondary'} text={`${provinceCode ===''? '0':shippingFee}.00$`} />
             <ResultCheckout textHead={"Tax:"} classHead= {'text-secondary'} text={`8%`} />
             {checkPromo? (
               <ResultCheckout textHead={"Promotion:"} classHead= {'text-secondary'} text={`-${promo}.00$`} textClass={'text-danger'} />
