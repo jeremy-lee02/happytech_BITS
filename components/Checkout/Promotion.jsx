@@ -34,7 +34,6 @@ const Promotion = ({text, isEmpty}) => {
 
 const handleMethodChange = selected => {
   setMethod(selected.value)
-  console.log(selected.value)
 }
 
 

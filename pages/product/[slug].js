@@ -10,6 +10,8 @@ const ProductDetails = ({product, products, recProducts}) => {
   const {image, name, details, price, color, available, _id} = product
   const {quantity, increase, decrease, onAdd, setShowCart, setProducts } = useStateContext()
   const [selectedColor, setSelectedColor] = useState('')
+  const [district, setDistrict] = useState([])
+
 
 
 useEffect(()=>{
@@ -17,13 +19,25 @@ useEffect(()=>{
 } ,[product, color])
 
 useEffect(()=>{
+    fetch('https://provinces.open-api.vn/api/d/')
+        .then(res => res.json())
+        .then(data => setDistrict(()=>data.filter(item => item.province_code === 1)))
     setProducts(products)
 } ,[])
 
 
-// const handleCheck = () =>{
-//     console.log(router.pathname)
-// }
+const handleCheck = () =>{
+    const districtName = district.map(item => item.name)
+    console.log(districtName)
+    const editName = districtName.map(item => {
+        const splitName = item.split(" ")
+        splitName.shift()
+        
+        console.log(typeof(splitName))
+    })
+    
+
+}
   
 
 const handleBuyNow = () => {
@@ -104,7 +118,7 @@ const handleBuyNow = () => {
                     }, quantity)} 
                     disabled = {check(available)==="Out of stock"?true:false}>Add To Cart</button>
                     <button type='button' className='buy-now' onClick= {handleBuyNow} disabled = {check(available)==="Out of stock"?true:false}>Buy Now</button>
-                    {/* <button type='button' className='btn btn-secondary' onClick={handleCheck}>Check</button> */}
+                    <button type='button' className='btn btn-secondary' onClick={handleCheck}>Check</button>
                 </div>
             </div>
         </div>
