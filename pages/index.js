@@ -19,7 +19,6 @@ export default function Home({banners, products, bestSellingProducts}) {
 }
 
 export const getServerSideProps = async () =>{
-  
   const query = '*[_type == "products"]'
   const products = await client.fetch(query)
   const bestSellingProducts = products.sort((a,b)=> b.sales - a.sales)
