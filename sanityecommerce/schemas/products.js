@@ -43,8 +43,8 @@ export default {
             type: 'string'
         },
         {
-            name: 'type',
-            tittle: 'Type',
+            name: 'category',
+            tittle: 'Category',
             type: 'string'
         },
         {

@@ -447,8 +447,10 @@ text-align: end;
 .category-wrapper{
   margin-top: 130px;
 }
+.error-wrapper{
+  height: 75vh;
 
-
+}
 
 
 .cart-heading .heading{

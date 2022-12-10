@@ -4,10 +4,12 @@ import { useStateContext } from '../../context/StateContext'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
+
 const Search = () => {
   const {products} = useStateContext()
   const [query, setQuery] = useState('')
   const router = useRouter()
+
 
   const filteredItems = useMemo(() => {
     return products.filter(item=>{

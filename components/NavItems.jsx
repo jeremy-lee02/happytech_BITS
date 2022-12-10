@@ -8,7 +8,7 @@ import {Items} from './index'
 const NavItems = () => {
   const {setShowNav} = useStateContext()
   const navRef = useRef()
-  const data = [{icon: faHouse, text: "Home"},{icon: faMouse, text: "Mouse"},{icon: faKeyboard, text: "Keyboard"},{icon: faHeadphones, text: "Headphones"}]
+  const data = [{icon: faHouse, text: "Home"},{icon: faMouse, text: "Mouse"},{icon: faKeyboard, text: "Keyboard"},{icon: faHeadphones, text: "Headphone"}]
   return (
     <div className='nav-wrapper' ref={navRef}>
       <div className='nav-container'>
