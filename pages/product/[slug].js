@@ -48,9 +48,6 @@ const handleCheck = () =>{
     })
     console.log(editName)
 
-
-    
-
 }
   
 
@@ -176,7 +173,7 @@ export const getStaticProps = async ({params: { slug }}) => {
   const products = await client.fetch(productsQuery);
 
   products.forEach(element => {
-    if (product.type === element.type && product.name !== element.name) {
+    if (product.category === element.category && product.name !== element.name) {
         recProducts.push(element);
     }
   });

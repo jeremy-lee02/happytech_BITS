@@ -449,8 +449,21 @@ text-align: end;
 }
 .error-wrapper{
   height: 75vh;
-
 }
+.image-cat{
+  height: 40%;
+  transition: .5 ease;
+}
+.cat-container{
+  transition: .5 ease;
+}
+
+
+.cat-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 
 
 .cart-heading .heading{

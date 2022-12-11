@@ -1,5 +1,5 @@
 import React,{ useEffect, useMemo} from 'react'
-import Card from '../../components/products/Card';
+import {Card} from '../../components'
 import { client} from '../../lib/client'
 import { useRouter } from 'next/router'
 import { useStateContext } from '../../context/StateContext';
@@ -10,11 +10,13 @@ function Shopping({products}) {
   const {setProducts} = useStateContext()
 
   const category = router.asPath.split('/')
+  // Set products to use the search bar
   useEffect(()=>{
     setProducts(products)
   },[router.asPath])
+  // Filter all product with the category from the route
   const newProducts = useMemo(()=>{
-    return products.filter(item => item.type.toLowerCase() === category[2])
+    return products.filter(item => item.category.toLowerCase() === category[2])
   }, [router.asPath])
 
   return (
@@ -33,7 +35,6 @@ export default Shopping;
 export const getServerSideProps = async () =>{
   const query = '*[_type == "products"]'
   const products = await client.fetch(query)
-  console.log(products)
 
   return {
     props: {products}

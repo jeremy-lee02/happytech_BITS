@@ -22,7 +22,7 @@ const SearchItem = ({sortedItems, query}) => {
                                 <img src={urlFor(item.image[0])} width={75} height = {75} alt = {item.name}/>
                             </div>
                             <div className='fs-5 pt-2'>{item.name}</div>
-                            <div className='fs-5 pt-2 text-danger'>{item.price}</div>
+                            <div className='fs-5 pt-2 text-danger'>{item.price}$</div>
                         </div>
                     </Link>
                 </li>

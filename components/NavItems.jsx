@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { useStateContext } from '../context/StateContext';
