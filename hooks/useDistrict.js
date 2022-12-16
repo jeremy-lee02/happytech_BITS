@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { useStateContext } from '../context/StateContext'
 
-const num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+
 
 export default function useDistrict(provinceCode){
     const [district, setDistrict] = useState([])

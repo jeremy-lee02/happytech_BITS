@@ -20,7 +20,7 @@ function Shopping({products}) {
   }, [router.asPath])
 
   return (
-    <div className="container category-wrapper">
+    <div className="container-fluid category-wrapper">
       <div className='d-flex justify-content-center mb-4'>
         <h2>{category[2].charAt(0).toUpperCase() + category[2].slice(1)}</h2>
       </div>

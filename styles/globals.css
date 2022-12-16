@@ -598,10 +598,10 @@ padding: 30px 65px;
   transition: .3s ease-in-out;
 }
 
-.product-detail-image:hover{
+/* .product-detail-image:hover{
   background-color: #f02d34;
 
-}
+} */
 .small-images-container{
   display: flex;
   gap: 10px;
@@ -618,7 +618,7 @@ padding: 30px 65px;
   margin-top: 50px;
 }
 .selected-image{
-  background-color:#f02d34;
+  background-color:#220bf5;
 }
 .reviews{
   color: #f02d34;
@@ -910,6 +910,13 @@ margin-top: 160px;
     width: 100% !important;
     position: relative !important;
     height: unset !important;
+  }
+  .img-products-container{
+    max-width: 100%;
+    min-height: 230px;
+  }
+  .img-responsive{
+    display: absolute;
   }
   .hero-banner-image{
     position: relative;

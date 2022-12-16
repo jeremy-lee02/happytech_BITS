@@ -11,8 +11,7 @@ const ProductDetails = ({product, products, recProducts}) => {
   const {quantity, increase, decrease, onAdd, setShowCart, setProducts } = useStateContext()
   const [selectedColor, setSelectedColor] = useState('')
   const [district, setDistrict] = useState([])
-
-
+  const [index, setIndex] = useState(0)
 
 useEffect(()=>{
     setSelectedColor(color[0])
@@ -64,7 +63,7 @@ const handleBuyNow = () => {
     setShowCart(true)
 }
 
-  const [index, setIndex] = useState(0)
+  
   const check = (value) =>{
     if(value) return "Available"
     return "Out of stock"

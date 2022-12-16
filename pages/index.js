@@ -17,7 +17,7 @@ export default function Home({banners, products, bestSellingProducts}) {
         <h2>Best Selling Products</h2>
       </div>
       <div className='products-container'>
-        {bestSellingProducts?.slice(0,6).map((product)=> <BestProducts key={product._id} products= {product} />)}
+        {bestSellingProducts?.slice(0,10).map((product)=> <BestProducts key={product._id} products= {product} />)}
       </div>
       <FooterBanner />
     </div>

@@ -20,7 +20,7 @@ export default function Card({products}) {
                 // Return all the product with different colors
                 <React.Fragment key={item._id}>
                 {item.color?.map(color=>(
-                    <div className="card item-wrapper col-lg-3 p-1 cat-container" key={item._id + color }>
+                    <div className="card item-wrapper col-lg-2 col-8 p-1 cat-container" key={item._id + color }>
                         <img className="w-100 rounded image-cat " src={urlFor(item.image[0])}/>
                         <div className="card-body mt-5">
                             <Link href={`/product/${item.slug.current}`}>
