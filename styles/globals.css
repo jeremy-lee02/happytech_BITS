@@ -620,6 +620,29 @@ padding: 30px 65px;
 .selected-image{
   background-color:#220bf5;
 }
+.filter-container{
+  position: relative;
+  max-width: 95%;
+  min-height: 80px;
+  border-radius: 10px;
+  background: white;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.filter-text{
+  position: absolute;
+  top: 35%;
+  padding-left: 30px;
+}
+.filter-content{
+  position: absolute;
+  top: 25%;
+  right: 0;
+  padding-right: 50px;
+}
+
+
 .reviews{
   color: #f02d34;
   margin-top: 10px;

@@ -75,9 +75,6 @@ const Cart = () => {
                 <button type='button' className='btn btn-primary mt-3' onClick={()=> setShowCart(false)}>Check Out</button>
               </Link>
             </div>
-            {/* <div className='btn-container'>
-              <button type='button' className='btn btn-primary mt-3'onClick={()=>console.log()}>Test</button>
-            </div> */}
           </div>
           
         )}

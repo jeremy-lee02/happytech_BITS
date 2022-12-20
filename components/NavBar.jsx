@@ -14,11 +14,9 @@ const NavBar = () => {
   return (
     <>
     <div className='navbar navbar-inverse fixed-top navbar-container'>
-      <Link href={'/'}>
-        <button type='button' className='cart-icon1'>
+      <button type='button' className='cart-icon1' onClick={()=>setShowNav(true)}>
             <Image src = {"/../public/logo.png"} objectFit='contain' width={90} height={90} alt={'menu'} />
-        </button>
-      </Link>
+      </button>
       <Search />
       <div className='cartNav-container'>
         <button type='button' className='cart-icon' onClick= {()=> setShowCart(true)}>
@@ -27,11 +25,6 @@ const NavBar = () => {
         </button>
       </div>
       {showCart?<Cart />:null}
-      <div className='menu-nav-container'>
-        <button type='button' className='cart-icon' onClick={()=>setShowNav(true)}>
-          <Image src = {"/../public/menu.png"} objectFit='contain' width={60} height={60}  alt={'menu'}/>
-        </button>
-      </div>
       {showNav?<NavItems />:null}
     </div>
     </>
