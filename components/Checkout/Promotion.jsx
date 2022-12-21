@@ -66,6 +66,34 @@ const handleMethodChange = selected => {
     return FINAL_PRICE
   }
 
+  //Handle Submit
+  const handleSubmit = async e =>{
+    e.preventDefault()
+    if(method !== ''){
+      const buyers = {
+        order_id: Date.now(),
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        phone: phoneRef.current.value,
+        address: addressRef.current.value,
+        note: noteRef.current.value,
+        shipping: method,
+        price: finalPrice().toFixed(2),
+        cart: cartItems
+      }
+      try{
+        await fetch("http://localhost:3000/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(buyers),
+        });
+      }catch (err){
+        alert(err)
+      }
+    }else alert("Please select shipping method")
+  }
 
 
   return (
@@ -87,7 +115,7 @@ const handleMethodChange = selected => {
         <div className='row gap-3'>
           {/* Left section */}
           <div className='info-container px-5 border border-2 col-12 col-xxl-6'>
-            <Form className='needs-validation '>
+            <form className='needs-validation' onSubmit={handleSubmit}>
               <h3>Shipping Information</h3>
               <div className='py-3'>
                 <InformationForm text={"Full Name"} type={"text"} value = {nameRef} isRequired={true} />
@@ -103,9 +131,9 @@ const handleMethodChange = selected => {
                 <MethodDes method={method}  />
               </div>
               <div>
-                <button type='button' className='btn btn-secondary mt-2 px-2'>Check out</button>
+                <button type='submit' className='btn btn-secondary mt-2 px-2'>Check out</button>
               </div>
-            </Form>
+            </form>
           </div>
           {/* Right section */}
           <div className='promo-box border border-2 col'>
