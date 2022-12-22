@@ -135,6 +135,7 @@ const handleMethodChange = selected => {
               </div>
               <div>
                 <button type='submit' className='btn btn-secondary mt-2 px-2'>Check out</button>
+      
               </div>
             </form>
           </div>

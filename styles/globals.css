@@ -785,10 +785,14 @@ padding: 6px;
   font-weight: 500;
   color: #f02d34;
 }
-.success-wrapper, .cancel-wrapper, .checkout-wrapper{
+.cancel-wrapper, .checkout-wrapper{
   /* background-color: white; */
   min-height: 60vh;
 
+}
+.success-wrapper{
+  padding-top: 20px;
+  min-height: 85vh;
 }
 .checkout{
   width: 100%;
@@ -1077,11 +1081,15 @@ margin-top: 160px;
   animation: marquee 10s linear infinite;
   width: 550%;
 }
-.success-wrapper, .cancel-wrapper{
+.cancel-wrapper{
   min-height: 69vh;
 }
+.success-wrapper{
+  margin-top: 20px;
+  min-height: 85vh;
+}
 .success, .cancel {
-   width: 370px;
+  width: 370px;
   margin-top: 100px;
   padding: 20px;
 }

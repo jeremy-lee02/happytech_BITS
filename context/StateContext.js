@@ -20,11 +20,6 @@ export const StateContext = ({children}) =>{
 
     let foundItem;
 
-
-
-    
-
-
     useEffect(()=>{
         const cartData = JSON.parse(sessionStorage.getItem("cart"))
         const totalQuantities1 = JSON.parse(sessionStorage.getItem("totalQuantities"))
@@ -43,6 +38,7 @@ export const StateContext = ({children}) =>{
           sessionStorage.setItem("cart", JSON.stringify(cartItems))
           sessionStorage.setItem("totalQuantities", totalQuantities)
           sessionStorage.setItem("totalPrice", totalPrice)
+          sessionStorage.setItem("checkout", true)
         }
     }, [cartItems])
     
