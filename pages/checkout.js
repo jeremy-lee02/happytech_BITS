@@ -2,7 +2,7 @@ import React from 'react'
 import { useStateContext } from '../context/StateContext';
 import { Promotion } from '../components';
 
-const checkout = () => {
+const Checkout = () => {
     const {cartItems} = useStateContext();
     
   return (
@@ -13,4 +13,4 @@ const checkout = () => {
     </div>
   )
 }
-export default checkout
+export default Checkout
