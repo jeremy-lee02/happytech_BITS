@@ -14,7 +14,7 @@ const FooterBanner = () => {
           <h3>Description: </h3>
           <p>Best desktop gears on the market</p>
         </div>
-          <Image src={'/../public/static/logo.png'} fill objectFit='contain' className='footer-banner-image' alt='logo' />
+          <Image src={'https://cdn.discordapp.com/attachments/1036490378154618984/1055412333670842419/logo.png'} fill objectFit='contain' className='footer-banner-image' alt='logo' />
       </div>
     </div>
   )

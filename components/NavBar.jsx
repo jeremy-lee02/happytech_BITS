@@ -15,7 +15,7 @@ const NavBar = () => {
     <>
     <div className='navbar navbar-inverse fixed-top navbar-container'>
       <button type='button' className='cart-icon1' onClick={()=>setShowNav(true)}>
-            <Image src = {"/../public/static/logo.png"} objectFit='contain' width={90} height={90} alt={'menu'} />
+            <Image src = {"https://cdn.discordapp.com/attachments/1036490378154618984/1055412333670842419/logo.png"} objectFit='contain' width={90} height={90} alt={'menu'} />
       </button>
       <Search />
       <div className='cartNav-container'>
