@@ -82,17 +82,20 @@ const handleMethodChange = selected => {
         cart: cartItems
       }
       try{
-        await fetch("http://localhost:3000/api/send", {
+        const res = await fetch("/api/send", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(buyers),
-        });
+        })
+        if (res.ok) {
+          toast.success("Check your email for confirmation")
+        }
       }catch (err){
         alert(err)
       }
-    }else alert("Please select shipping method")
+    }else toast.error("Please select shipping method")
   }
 
 
