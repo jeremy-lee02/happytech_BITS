@@ -16,6 +16,6 @@ export {default as Items} from './NavBarComponents/Items'
 export {default as Search} from './Search/Search'
 export {default as SearchCard} from './Search/SearchCard'
 export {default as SearchItem} from './Search/SearchItem'
-export {default as Card} from './Products/Card'
-export {default as Filter} from './Products/Filter'
+export {default as Card} from './products/Card'
+export {default as Filter} from './products/Filter'
 
