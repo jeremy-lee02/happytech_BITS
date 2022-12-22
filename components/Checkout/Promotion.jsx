@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react'
 import Select from 'react-select'
 import Link from 'next/link'
-import {Form, FormSelect} from 'react-bootstrap'
+import { useRouter } from 'next/router'
 import {CheckoutCart,InformationForm,ResultCheckout, MethodDes, SelectAddress} from '../index'
 import {useStateContext} from '../../context/StateContext'
 import useShippingFee from '../../hooks/useShippingFee'
@@ -13,6 +13,8 @@ const promo = 10;
 
 
 const Promotion = ({text, isEmpty}) => {
+  //UseRouter
+  const router = useRouter()
   // UseRef()
   const nameRef = useRef()
   const emailRef = useRef()
@@ -91,6 +93,7 @@ const handleMethodChange = selected => {
         })
         if (res.ok) {
           toast.success("Check your email for confirmation")
+          router.push('/success')
         }
       }catch (err){
         alert(err)
@@ -135,7 +138,6 @@ const handleMethodChange = selected => {
               </div>
               <div>
                 <button type='submit' className='btn btn-secondary mt-2 px-2'>Check out</button>
-      
               </div>
             </form>
           </div>

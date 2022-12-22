@@ -3,8 +3,6 @@ import {toast} from 'react-hot-toast'
 
 const Context = createContext();
 
-
-
 export const StateContext = ({children}) =>{
     const initialState = [];
     const [showCart, setShowCart] = useState(false)
@@ -17,9 +15,9 @@ export const StateContext = ({children}) =>{
     const [cityName, setCityName] = useState('')
     const [provinceCode, setProvinceCode] = useState('')
     const [districtName, setDistrictName] = useState('')
-
     let foundItem;
 
+    //Set up session storage
     useEffect(()=>{
         const cartData = JSON.parse(sessionStorage.getItem("cart"))
         const totalQuantities1 = JSON.parse(sessionStorage.getItem("totalQuantities"))
@@ -42,7 +40,7 @@ export const StateContext = ({children}) =>{
         }
     }, [cartItems])
     
-
+    // Add item to cart 
     const onAdd = (product, quantity) => {
         const checkProductInCart = cartItems.find(item => item._id === product._id)
         setTotalPrice(prev => prev + product.price * quantity)
@@ -62,6 +60,7 @@ export const StateContext = ({children}) =>{
             setCartItems([...cartItems, {...product}])
         }
     }
+    // Remove Item from cart
     const removeItem = (product) =>{
         foundItem = cartItems.find(item => item._id === product._id)
         const newCartItems = cartItems.filter((item)=> item._id !== product._id )
@@ -69,6 +68,7 @@ export const StateContext = ({children}) =>{
         setTotalQuantities(prev => prev - foundItem.quantity)
         setCartItems(newCartItems)
     }
+    // Update Item from cart
     const toggleCartItem = (id, value) => {
         foundItem = cartItems.find(item => item._id === id )
         index = cartItems.findIndex(item => item._id === id)
@@ -85,10 +85,11 @@ export const StateContext = ({children}) =>{
             }
         }
     }
-
+    //Increase quantity of item
     const increase = () =>{
         setQuantity(prev=> prev+1)
     }
+    //Decrease quantity of item
     const decrease = () =>{
         setQuantity(prev =>{
             if(prev - 1 < 1 ) return 1
