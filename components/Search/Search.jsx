@@ -28,7 +28,7 @@ const Search = () => {
   }
   return (
     <>
-    <div className='position-relative m-auto w-50'>
+    <div className='position-relative m-auto search-width '>
         <div className='input-group input-group-lg search-control'>
           <input 
             value={query} 
@@ -45,7 +45,6 @@ const Search = () => {
           </div>
           {query === ""? null: (<SearchCard sortedItems={filteredItems} query={query}/>)}
         </div>
-        
     </div>
     </>
   )

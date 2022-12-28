@@ -4,9 +4,8 @@ import React,{useState} from 'react'
 import { urlFor } from '../../lib/client';
 
 const SearchItem = ({sortedItems, query}) => {
-
   return (
-    <div className='card w-100 border-0 '>
+    <div className='card search-card border-0 '>
         <ul className="list-group list-group-flush text-dark ">
             {sortedItems.length < 1? (
                 <li className="list-group-item text-dark">No items with
