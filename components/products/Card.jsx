@@ -19,15 +19,12 @@ export default function Card({products}) {
             {products.length > 1? products.map(item=>(
                 // Return all the product with different colors
                 <React.Fragment key={item._id}>
-                {item.color?.map(color=>(
-                    <div className="card item-wrapper col-lg-2 col-8 p-1 cat-container" key={item._id + color }>
+                    <div className="card item-wrapper col-lg-2 col-8 p-1 cat-container">
                         <img className="w-100 rounded image-cat " src={urlFor(item.image[0])}/>
                         <div className="card-body mt-5">
                             <Link href={`/product/${item.slug.current}`}>
                                 <h4 className="card-title">{item.name} 
-                                    {item.color.length === 1? "":(
-                                        <span> x {color}</span>
-                                    )}
+                                    <span> {item.color.length > 1? "x Multiple Color": ""}</span>
                                 </h4>
                             </Link>
                             <h4 className={`fs-5 ${item.available? 'text-success': 'text-danger'} pt-2`}>{check(item.available)}</h4>
@@ -50,7 +47,7 @@ export default function Card({products}) {
                             }, 1)}>Add to Cart</button>
                         </div>
                     </div>
-                ))}
+
                 </React.Fragment>
             )):(
                 // Return invalid path error

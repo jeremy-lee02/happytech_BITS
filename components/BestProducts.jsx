@@ -1,8 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 import { urlFor } from '../lib/client'
+import { useEffect } from 'react'
 
 const BestProducts = ({products: {image,name,slug,price, type}}) => {
+
+  useEffect(()=>{
+
+    console.log(urlFor(image && image[0]))
+  },[])
+
   return (
     <div>
       <Link href={`/product/${slug.current}`}>
