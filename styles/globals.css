@@ -212,7 +212,7 @@ width: 100%;
   text-align: center;
   border-radius: 15px;
   position: relative;
-  height: 500px;
+  min-height: fit-content;
   line-height: 0.9; 
   width: 100%;
   overflow: hidden;
