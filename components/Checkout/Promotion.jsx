@@ -7,6 +7,7 @@ import {useStateContext} from '../../context/StateContext'
 import useShippingFee from '../../hooks/useShippingFee'
 import {toast} from 'react-hot-toast'
 import { AiOutlineDeliveredProcedure, AiOutlineBank } from 'react-icons/ai'
+import { v4 as uuidv4 } from 'uuid';
 
 const PROMOTION = "WORLDCUP10"
 const promo = 10;
@@ -73,7 +74,7 @@ const handleMethodChange = selected => {
     e.preventDefault()
     if(method !== ''){
       const buyers = {
-        order_id: Date.now(),
+        order_id: uuidv4(),
         name: nameRef.current.value,
         email: emailRef.current.value,
         phone: phoneRef.current.value,
