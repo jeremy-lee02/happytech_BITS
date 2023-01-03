@@ -9,7 +9,7 @@ import {toast} from 'react-hot-toast'
 import { AiOutlineDeliveredProcedure, AiOutlineBank } from 'react-icons/ai'
 import { v4 as uuidv4 } from 'uuid';
 
-const PROMOTION = "WORLDCUP10"
+const PROMOTION = "WELCOME10"
 const promo = 10;
 
 
@@ -82,7 +82,10 @@ const handleMethodChange = selected => {
         note: noteRef.current.value,
         shipping: method,
         price: finalPrice().toFixed(2),
-        cart: cartItems
+        promo : checkPromo === true?"WELCOME10":"No Promotion added",
+        cart: cartItems,
+        shipping: method,
+        banking: {accNum: "123 456 789 111", bank: "Sacombank", name:"LE TRUNG TIN"}
       }
       try{
         const res = await fetch("/api/send", {

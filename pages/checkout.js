@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateContext } from '../context/StateContext';
 import { Promotion } from '../components';
 
 const Checkout = () => {
     const {cartItems} = useStateContext();
+    useEffect(()=>{
+      console.log(cartItems) 
+    },[])
     
   return (
     <div className='checkout-wrapper'>
