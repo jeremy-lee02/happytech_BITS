@@ -32,19 +32,22 @@ export default function Card({products}) {
                             Price:
                             <span> {item.price}$</span>
                             </h4>
-                            <button 
-                            className='btn btn-outline-secondary' 
-                            disabled ={!item.available}
-                            onClick= {()=> onAdd({
-                                "_id": item._id + color,
-                                "image": item.image,
-                                "name": item.name,
-                                "details": item.details,
-                                "price": item.price,
-                                "color": color,
-                                "available": item.available,
-                                "quantity": 1
-                            }, 1)}>Add to Cart</button>
+                            {item.color.length === 1?(
+                                <button 
+                                className='btn btn-outline-secondary' 
+                                disabled ={!item.available}
+                                onClick= {()=> onAdd({
+                                    "_id": item._id + item.color[0],
+                                    "image": item.image,
+                                    "name": item.name,
+                                    "details": item.details,
+                                    "price": item.price,
+                                    "color": item.color[0],
+                                    "available": item.available,
+                                    "quantity": 1
+                                }, 1)}>Add to Cart</button>
+                            ):(<p className='text-primary'>More Option ...</p>)}
+
                         </div>
                     </div>
 

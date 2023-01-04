@@ -34,15 +34,15 @@ const Cart = () => {
             <div className='product' key={item._id}>
               <img src= {urlFor(item?.image[0])} className = 'cart-product-image' alt= {item.name}/>
               <div className='item-desc'>
-                <div className='flex top'>
+                <div className='flex-item top'>
                   <h5>{item.name}</h5>
                   <h4>${item.price}</h4>
                 </div>
-                <div className='flex top'>
+                <div className='flex-item top'>
                   <h5>Color:</h5>
                   <h4>{item.color}</h4>
                 </div>
-                <div className='flex bottom'>
+                <div className='flex-item bottom'>
                   <div>
                     <p className='quantity-desc'>
                     <span className='minus' onClick= {()=>toggleCartItem(item._id, 'decrement')}>

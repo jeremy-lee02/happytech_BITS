@@ -511,7 +511,7 @@ padding: 20px 10px;
   border-radius: 15px;
   background-color: #ebebeb;
 }
-.item-desc .flex{
+.item-desc .flex-item{
   display: flex;
   justify-content: space-between;
   width: 350px;
@@ -521,10 +521,10 @@ padding: 20px 10px;
 .item-desc .bottom{
   margin-top: 20px;
 }
-.flex h5{
+.flex-item-item h5{
   font-size: 24px;
 }
-.flex h4{
+.flex-item h4{
   font-size: 20px;
 }
 .total{
@@ -1072,7 +1072,7 @@ margin-top: 160px;
     margin: 20px;
   }
 
-.item-desc .flex{
+.item-desc .flex-item{
   width: 200px;
 }
 .top{
@@ -1084,11 +1084,11 @@ margin-top: 160px;
 .item-desc .bottom{
   margin-top: 30px;
 }
-.flex h5{
+.flex-item h5{
   font-size: 16px;
    color: #324d67;
 }
-.flex h4{
+.flex-item h4{
   font-size: 16px;
    color: black;
 }

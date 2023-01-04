@@ -16,6 +16,7 @@ export const StateContext = ({children}) =>{
     const [provinceCode, setProvinceCode] = useState('')
     const [districtName, setDistrictName] = useState('')
     let foundItem;
+    let index;
 
     //Set up session storage
     useEffect(()=>{
